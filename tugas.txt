@@ -1,0 +1,41 @@
+
+SOAL RESPONSI PRAKTIKUM SISTEM TERDISTRIBUSI
+Waktu : 60 menit
+Sifat : Live Coding (No Internet, No Gadget, Close Book)
+
+Ketentuan: 
+Anda diminta untuk membuat sebuah sistem Web API sederhana untuk mengelola data barang di sebuah gudang. Sistem ini harus mencakup manajemen database menggunakan ORM, dan pengamanan data saat terjadi akses bersamaan.
+
+
+Instruksi Tugas:
+
+1. Pemodelan Data & Database (Skor: 35)
+    a. Buatlah satu buah model (Class) dengan ketentuan:
+    b. Barang: IdBarang (PK), NamaBarang, Harga, Stok, dan Idkategori.
+    c. Gunakan Entity Framework Core untuk memetakan class tersebut menjadi tabel di database (SQL Server).
+    d. Lakukan proses Migration untuk membentuk database.
+
+2. Implementasi RESTful Endpoint (Skor: 45)
+    a. Buatlah Controller untuk Barang yang memiliki fungsi CRUD
+    lengkap:
+        1) GET: Menampilkan semua daftar barang.
+        2) GET (by ID): Menampilkan detail satu barang.
+        3) POST: Menambahkan barang baru.
+        4) PUT: Memperbarui data barang yang sudah ada. DELETE: Menghapus data barang.
+    b. Pastikan endpoint dapat diuji dan berjalan dengan baik menggunakan Postman.
+
+3. Implementasi Transaction (Skor: 10)
+    a. Buatlah satu endpoint khusus (misal: POST api/barang/update- massal) yang berfungsi untuk mengubah data beberapa barang dalam satu request. Misal menambah stok beberapa barang sekaligus
+    b. Gunakan IDbContextTransaction (BeginTransaction) untuk memastikan bahwa jika salah satu proses pembaruan gagal, maka seluruh perubahan harus dibatalkan (Rollback). Jika semua berhasil, lakukan Commit.
+
+4. Concurrency Control & Transparency (Skor: 10)
+    a. Tambahkan fitur Concurrency Check pada tabel Barang menggunakan properti RowVersion (byte array).
+    b. Simulasikan atau jelaskan bagaimana sistem Anda menangani kondisi jika dua admin mencoba mengubah stok barang yang sama di waktu yang hampir bersamaan (masalah Race
+    Condition).
+    c. Pastikan implementasi Anda mendukung prinsip Persistence Transparency, di mana logika akses database terpisah dari logika bisnis.
+
+Kriteria Penilaian:
+1. Koneksi Database: API berhasil terhubung dan menyimpan data ke database.
+2. Kesesuaian Endpoint: Method HTTP (GET, POST, PUT, DELETE)
+digunakan secara tepat sesuai fungsinya.
+3. Format Data: Input dan Output menggunakan format JSON yang valid.
